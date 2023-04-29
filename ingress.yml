@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1 # for versions before 1.14 use extensions/v1beta1
+kind: Ingress
+metadata:
+  name: yogis
+  #namespace: yogis
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: asp.info
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: yogis
+                port:
+                  number: 80
